@@ -52,10 +52,11 @@ describe(`dateParser`, () => {
       seconds: date.getSeconds(),
       milliseconds: date.getMilliseconds()
     });
+
     expect(dateParser('from 1 hour ago to now', 'America/Los_Angeles')).toStrictEqual(
       [
         from.format(moment.HTML5_FMT.DATETIME_LOCAL_MS),
-        from.clone().add({ hours: 2 }).subtract({ milliseconds: 1 }).format(moment.HTML5_FMT.DATETIME_LOCAL_MS)
+        from.clone().add({ hours: 2 }).subtract({ seconds: 1 }).format('YYYY-MM-DDTHH') + ':59:59.999'
       ]
     );
   });
